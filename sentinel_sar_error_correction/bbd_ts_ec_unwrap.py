@@ -8,7 +8,7 @@ import geopandas as gpd
 #bbd time series error correction unwrapping errors
 
 half_wave_length = 5.56/2
-max_wrap_cycles = 5
+max_wrap_cycles = 2
 
 num_of_ts = 12
 in_file = '/media/hog/fringe1/dev/data/testn.csv'
@@ -30,7 +30,7 @@ print(df.head())
 this_markerdict = {}
 #data.shape[0]
 #for idx in range(0,len(data)):
-for idx in range(0,200):
+for idx in range(199,200):
     print(idx)
     num_of_ts = idx
     sig_diff = [j-i for i,j in zip(data[num_of_ts,0:-1], data[num_of_ts,1:])]
@@ -58,12 +58,15 @@ bx=plt.gca()
 bx.axes.xaxis.set_ticklabels([])
 
 plt.figure()
-plt.plot(dates, data[num_of_ts,:])
+plt.plot(dates, data[num_of_ts,:],color='lightblue', alpha=0.7)
+plt.plot(dates, data[num_of_ts,:],'.')
+plt.xlabel('time')
+plt.ylabel('mm')
 plt.figure()
 plt.hist(data[num_of_ts,0:-1], bins=20)
 
 
-plt.figure()
+#plt.figure()
 sig_diff_corr = []
 for gm, d in zip(sig_diff, dates):
     wrap = int(abs(gm)//half_wave_length)
@@ -74,17 +77,17 @@ for gm, d in zip(sig_diff, dates):
         sig_diff_corr.append(gm)
         #print(gm)
 
-ax = plt.gca()
+#ax = plt.gca()
 #ax.grid(which='major', color='#DDDDDD', alpha=0.5)
 #ax.grid(which='minor', color='#DDDDDD', alpha=0.5)
 #ax.minorticks_on()
 this_upper_bound = [np.mean(sig_diff) +  half_wave_length + np.std(sig_diff) for i in dates]
 this_lower_bound = [np.mean(sig_diff) -  half_wave_length - np.std(sig_diff) for i in dates]
-plt.fill_between(dates, this_lower_bound, this_upper_bound, color='lightgray', alpha=0.5)
-plt.plot(dates, data[num_of_ts,:], label='data')
-plt.stem(dates, sig_diff, label='sig_diff')
-plt.stem(dates, sig_diff_corr, linefmt='darkred',label='sig_diff_corr')
-plt.plot(dates, np.cumsum(sig_diff_corr), label='cumsum sig_diff_corr')
+#plt.fill_between(dates, this_lower_bound, this_upper_bound, color='lightgray', alpha=0.5)
+#plt.plot(dates, data[num_of_ts,:], label='data')
+#plt.stem(dates, sig_diff, label='sig_diff')
+#plt.stem(dates, sig_diff_corr, linefmt='darkred',label='sig_diff_corr')
+#plt.plot(dates, np.cumsum(sig_diff_corr), label='cumsum sig_diff_corr')
 # #plt.plot(dates, np.cumsum(sig_diff), label='cumsum sig_diff')
 plt.legend()
 #
