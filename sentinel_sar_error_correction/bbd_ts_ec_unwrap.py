@@ -7,6 +7,8 @@ import geopandas as gpd
 
 #bbd time series error correction unwrapping errors
 # this ist a dummy
+def funczero():
+    return 0
 
 half_wave_length = 5.56/2
 max_wrap_cycles = 5
