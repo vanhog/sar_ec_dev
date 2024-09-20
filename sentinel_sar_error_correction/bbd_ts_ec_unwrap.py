@@ -80,10 +80,10 @@ ax = plt.gca()
 #ax.minorticks_on()
 this_upper_bound = [np.mean(sig_diff) +  half_wave_length + np.std(sig_diff) for i in dates]
 this_lower_bound = [np.mean(sig_diff) -  half_wave_length - np.std(sig_diff) for i in dates]
-plt.fill_between(dates, this_lower_bound, this_upper_bound, color='lightgray', alpha=0.5)
+#plt.fill_between(dates, this_lower_bound, this_upper_bound, color='lightgray', alpha=0.5)
 plt.plot(dates, data[num_of_ts,:], label='data')
-plt.stem(dates, sig_diff, label='sig_diff')
-plt.stem(dates, sig_diff_corr, linefmt='darkred',label='sig_diff_corr')
+#plt.stem(dates, sig_diff, label='sig_diff')
+#plt.stem(dates, sig_diff_corr, linefmt='darkred',label='sig_diff_corr')
 plt.plot(dates, np.cumsum(sig_diff_corr), label='cumsum sig_diff_corr')
 # #plt.plot(dates, np.cumsum(sig_diff), label='cumsum sig_diff')
 plt.legend()
