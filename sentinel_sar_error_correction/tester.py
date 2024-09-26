@@ -9,8 +9,14 @@
 import sentinel1helper as s1h
 import geopandas as gpd
 
-in_file = 'file:///media/hog/fringe1/sc/MSCDATA/Roenne-Overview/aoi_msc_gpk/tl5_l2b_aoi_msc_gpkg.gpkg'
-layer = 'tl5_d_139_01_mscaoi'
+# in_file = 'file:///media/hog/fringe1/sc/MSCDATA/Roenne-Overview/aoi_msc_gpk/tl5_l2b_aoi_msc_gpkg.gpkg'
+# layer = 'tl5_d_139_01_mscaoi'
+#
+#
+# gdf = gpd.read_file(in_file, layer=layer)
 
+import datetime as dt
 
-gdf = gpd.read_file(in_file, layer=layer)
+myday = dt.datetime.strptime('20240301', '%Y%m%d')
+print(myday+dt.timedelta(1))
+

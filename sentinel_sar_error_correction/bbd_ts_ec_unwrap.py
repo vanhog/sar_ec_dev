@@ -14,14 +14,14 @@ half_wave_length = 5.56/2
 max_wrap_cycles = 5
 
 num_of_ts = 12
-in_file = '/media/hog/fringe1/dev/data/testn.csv'
-in_file = '/media/hog/fringe1/dev/data/tl5_l2b_044_02_0001-0200.csv'
-#in_file = '/media/hog/fringe1/sc/MSCDATA/Roenne-Overview/aoi_msc_gpk/tl5_l2b_aoi_msc_gpkg.gpkg'
-#in_layer = 'tl5_a_044_01_mscaoi'
+# in_file = '/media/hog/fringe1/dev/data/testn.csv'
+# in_file = '/media/hog/fringe1/dev/data/tl5_l2b_044_02_0001-0200.csv'
+in_file = '/media/hog/fringe1/sc/MSCDATA/Roenne-Overview/aoi_msc_gpk/tl5_l2b_aoi_msc_gpkg.gpkg'
+in_layer = 'tl5_a_044_01_mscaoi'
 #in_file = '/media/nas01/hog/sc/sc_data/BBD_TL5/schleswig-holstein/l2b_schleswig-holstein_clipped.gpkg'
 #in_layer = 'ASCE_044_02'
-#df = sh.read_geofile(in_file, layer=in_layer, engine='pyogrio')
-df = pd.read_csv(in_file)
+df = sh.read_geofile(in_file, layer=in_layer, engine='pyogrio')
+#df = pd.read_csv(in_file)
 
 dates, dats, nodats = sh.get_datatime_dates(df.columns)
 data = df.loc[:,'date_20150406':'date_20211230'].to_numpy()
